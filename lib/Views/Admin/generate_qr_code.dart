@@ -10,7 +10,6 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:qr_app/Views/Auth/auth_page.dart';
 import 'package:qr_app/Views/Splash/splash.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
 class GenerateQRCode extends StatefulWidget {
@@ -26,7 +25,6 @@ class GenerateQRCodeState extends State<GenerateQRCode> {
 
   @override
   Widget build(BuildContext context) {
-    final screenshotController = ScreenshotController();
     var dateformat = DateFormat('yyyy-MM-dd').format(DateTime.now());
 
     return CupertinoPageScaffold(
@@ -60,29 +58,8 @@ class GenerateQRCodeState extends State<GenerateQRCode> {
         children: [
           Expanded(
             flex: 2,
-            child: Screenshot(
-              controller: screenshotController,
-              child: Center(
-                child: QrforImage(dateformat),
-              ),
-            ),
-          ),
-          Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                CupertinoButton(
-                    onPressed: () async {
-                      final imageFile = await screenshotController
-                          .captureFromWidget(QrforImage(dateformat));
-                      if (imageFile == null) return;
-                      saveAndShare(imageFile);
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [Text("مشاركة"), Icon(Icons.share)],
-                    )),
-              ],
+            child: Center(
+              child: QrforImage(dateformat),
             ),
           ),
         ],

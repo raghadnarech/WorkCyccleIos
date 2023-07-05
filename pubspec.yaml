@@ -49,7 +49,6 @@ dependencies:
   permission_handler:
   provider: 
   qr_flutter:
-  screenshot:
   share_plus:
   shared_preferences: 
   shimmer: 
