@@ -70,13 +70,12 @@ class _ScannerQrState extends State<ScannerQr> {
                           width: MediaQuery.of(context).size.width * 0.9,
                           height: MediaQuery.of(context).size.height * 0.5,
                           child: MobileScanner(
-                            allowDuplicates: false,
                             fit: BoxFit.fill,
                             controller: MobileScannerController(
                                 facing: CameraFacing.back, torchEnabled: false),
-                            onDetect: (barcode, args) async {
+                            onDetect: (barcodes) async {
                               await [Permission.camera].request();
-                              if (barcode.rawValue == null) {
+                              if (barcodes.raw == null) {
                                 debugPrint('Failed to scan Barcode');
                               } else {
                                 showCupertinoDialog(
@@ -90,7 +89,8 @@ class _ScannerQrState extends State<ScannerQr> {
                                         CupertinoButton(
                                             onPressed: () async {
                                               if (await employeeProvider
-                                                  .takeEnterTime(barcode)) {
+                                                  .takeEnterTime(
+                                                      barcodes.raw)) {
                                                 Navigator.pop(context);
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(SnackBar(
@@ -109,7 +109,7 @@ class _ScannerQrState extends State<ScannerQr> {
                                         CupertinoButton(
                                             onPressed: () async {
                                               if (await employeeProvider
-                                                  .takeOutTime(barcode)) {
+                                                  .takeOutTime(barcodes.raw)) {
                                                 Navigator.pop(context);
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(SnackBar(

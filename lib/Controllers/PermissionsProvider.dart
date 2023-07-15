@@ -93,7 +93,7 @@ class PermissionsProvider with ChangeNotifier {
     notifyListeners();
     http.Response response;
     try {
-      response = await http.post(Uri.parse('$url/acc-rej/$idper'), headers: {
+      response = await http.post(Uri.parse('$url/acc-reject/$idper'), headers: {
         'Accept': 'application/json',
         'Authorization': 'Bearer $token',
       }, body: {
@@ -110,6 +110,8 @@ class PermissionsProvider with ChangeNotifier {
     }
 
     if (response.statusCode == 200) {
+      print(response.statusCode);
+
       print(response.body);
       loadingacc_rej = false;
       notifyListeners();
@@ -117,6 +119,7 @@ class PermissionsProvider with ChangeNotifier {
       return true;
     } else {
       print(response.body);
+      print(response.statusCode);
 
       loadingacc_rej = false;
       notifyListeners();
@@ -131,7 +134,7 @@ class PermissionsProvider with ChangeNotifier {
     notifyListeners();
     http.Response response;
     try {
-      response = await http.post(Uri.parse('$url/acc-rej/$idper'), headers: {
+      response = await http.post(Uri.parse('$url/acc-reject/$idper'), headers: {
         'Accept': 'application/json',
         'Authorization': 'Bearer $token',
       }, body: {
@@ -148,6 +151,8 @@ class PermissionsProvider with ChangeNotifier {
     }
 
     if (response.statusCode == 200) {
+      print(response.statusCode);
+
       print(response.body);
       loadingacc_rej = false;
       notifyListeners();
@@ -155,6 +160,7 @@ class PermissionsProvider with ChangeNotifier {
       return true;
     } else {
       print(response.body);
+      print(response.statusCode);
 
       loadingacc_rej = false;
       notifyListeners();
@@ -220,9 +226,6 @@ class PermissionsProvider with ChangeNotifier {
       request.fields.addAll({
         'kind': 'satisfactory',
         'days': days!,
-        'reason': "satisfactory",
-        "hours": "0",
-        'date': "0000/00/00",
       });
       request.files
           .add(await http.MultipartFile.fromPath('image', image!.path));
