@@ -42,7 +42,7 @@ dependencies:
   image_picker_ios: 
   insta_image_viewer: 
   intl: 
-  mobile_scanner: 3.3.0
+  mobile_scanner: 
   motion: 
   page_transition: 
   path_provider:
@@ -52,6 +52,7 @@ dependencies:
   share_plus:
   shared_preferences: 
   shimmer: 
+  flutter_localization: 
   unique_identifier: 
 
 dev_dependencies:

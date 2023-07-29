@@ -11,6 +11,8 @@ import 'package:qr_app/Controllers/TaskProvider.dart';
 import 'package:qr_app/Controllers/WorkTimeProvider.dart';
 import 'package:qr_app/Views/Auth/auth_page.dart';
 import 'package:qr_app/Views/Splash/splash.dart';
+import 'package:qr_app/l10n/l10n.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
@@ -53,6 +55,13 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: CupertinoApp(
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: L10n.all,
+        locale: Locale('ar'),
         debugShowCheckedModeBanner: false,
         theme: CupertinoThemeData(
           scaffoldBackgroundColor: Color(0xffffffff),

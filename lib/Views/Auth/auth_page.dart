@@ -67,8 +67,8 @@ class _AuthPageState extends State<AuthPage> {
       onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
       },
-      child: CupertinoPageScaffold(
-        child: SafeArea(
+      child: SafeArea(
+        child: CupertinoPageScaffold(
           child: SingleChildScrollView(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

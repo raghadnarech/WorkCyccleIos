@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -116,27 +117,34 @@ class _AddEmployeeState extends State<AddEmployee> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                AutoSizeText("اسم الموظف"),
                 TextInputForAll(
                   hint: "اسم الموظف",
                   lable: "اسم الموظف",
                   controller: nameController,
                 ),
+                AutoSizeText("رقم الهاتف"),
                 TextInputForAll(
                   hint: "رقم الهاتف",
                   lable: "رقم الهاتف",
                   controller: phoneController,
                   type: TextInputType.number,
                 ),
+                AutoSizeText("كلمة المرور"),
                 TextInputForAll(
                   hint: "كلمة المرور",
                   lable: "كلمة المرور",
                   controller: passwordController,
                 ),
+                AutoSizeText("رقم الهوية"),
                 TextInputForAll(
                   hint: "رقم الهوية",
                   lable: "رقم الهوية",
                   controller: number_idintityController,
                   type: TextInputType.number,
+                ),
+                AutoSizeText(
+                  "تاريخ انتهاء الإقامة",
                 ),
                 TextInputForAll(
                   hint: "$dateformat",
@@ -144,17 +152,22 @@ class _AddEmployeeState extends State<AddEmployee> {
                   controller: dateaddemployeeController,
                   type: TextInputType.datetime,
                 ),
+                AutoSizeText("الراتب الأساسي"),
                 TextInputForAll(
                   hint: "الراتب الأساسي",
                   lable: "الراتب الأساسي",
                   controller: salaryController,
                   type: TextInputType.number,
                 ),
+                AutoSizeText("بدل السكن"),
                 TextInputForAll(
                   hint: "بدل السكن",
                   lable: "بدل السكن",
                   controller: housing_allowanceController,
                   type: TextInputType.number,
+                ),
+                AutoSizeText(
+                  "بدل المواصلات",
                 ),
                 TextInputForAll(
                   hint: "بدل المواصلات",
@@ -162,6 +175,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                   controller: transfer_allowanceController,
                   type: TextInputType.number,
                 ),
+                AutoSizeText("بدلات أخرى"),
                 TextInputForAll(
                   hint: "بدلات أخرى",
                   lable: "بدلات أخرى",
