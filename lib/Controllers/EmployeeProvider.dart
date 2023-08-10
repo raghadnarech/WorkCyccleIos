@@ -214,7 +214,7 @@ class EmployeeProvider with ChangeNotifier {
     print(token);
     loadinglist = true;
     notifyListeners();
-
+    listemployee = [];
     http.Response? response;
     try {
       response = await http.get(
