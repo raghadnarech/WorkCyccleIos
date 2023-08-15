@@ -5,11 +5,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:image_picker_ios/image_picker_ios.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
 
 import 'package:insta_image_viewer/insta_image_viewer.dart';
 import 'package:intl/intl.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_app/Controllers/EmployeeProvider.dart';
 import 'package:qr_app/Views/Splash/splash.dart';
@@ -52,29 +53,37 @@ class _AddEmployeeState extends State<AddEmployee> {
     totalController.text = total.toString();
   }
 
-  final ImagePickerIOS _picker = ImagePickerIOS();
+  final ImagePicker _picker = ImagePicker();
   String? imageName = "";
   File? imagePath;
   File? file;
   XFile? imagefilesx;
 
   openImagefromGalary() async {
-    var pickedfiles = await _picker.getImage(source: ImageSource.gallery);
-    //you can use ImageCourse.camera for Camera capture
-    if (pickedfiles != null) {
-      setState(() {
-        imagefilesx = pickedfiles;
-      });
+    PermissionStatus permission = await Permission.photos.request();
+    if (permission.isDenied) {
+    } else {
+      var pickedfiles = await _picker.pickImage(source: ImageSource.gallery);
+      //you can use ImageCourse.camera for Camera capture
+      if (pickedfiles != null) {
+        setState(() {
+          imagefilesx = pickedfiles;
+        });
+      }
     }
   }
 
   openImagefromCamer() async {
-    var pickedfiles = await _picker.getImage(source: ImageSource.camera);
-    //you can use ImageCourse.camera for Camera capture
-    if (pickedfiles != null) {
-      setState(() {
-        imagefilesx = pickedfiles;
-      });
+    PermissionStatus permission = await Permission.photos.request();
+    if (permission.isDenied) {
+    } else {
+      var pickedfiles = await _picker.pickImage(source: ImageSource.camera);
+      //you can use ImageCourse.camera for Camera capture
+      if (pickedfiles != null) {
+        setState(() {
+          imagefilesx = pickedfiles;
+        });
+      }
     }
   }
 

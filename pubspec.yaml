@@ -39,7 +39,7 @@ dependencies:
     sdk: flutter
   flutter_slidable: 
   http: 
-  image_picker_ios: 
+  image_picker:
   insta_image_viewer: 
   intl: 
   mobile_scanner: 

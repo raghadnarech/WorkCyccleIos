@@ -3,10 +3,11 @@ import 'dart:io';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker_ios/image_picker_ios.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:insta_image_viewer/insta_image_viewer.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'package:provider/provider.dart';
 import 'package:qr_app/Controllers/PermissionsProvider.dart';
@@ -25,7 +26,7 @@ final key = GlobalKey<FormState>();
 
 class _SatisfactoryPermissionState extends State<SatisfactoryPermission> {
   final daysController = TextEditingController();
-  ImagePickerIOS picker = ImagePickerIOS();
+  ImagePicker picker = ImagePicker();
   String? imageName = "";
   File? imagePath;
   File? file;
@@ -37,22 +38,30 @@ class _SatisfactoryPermissionState extends State<SatisfactoryPermission> {
     double width = MediaQuery.of(context).size.width;
 
     openImagefromGalary() async {
-      var pickedfiles = await picker.getImage(source: ImageSource.gallery);
-      //you can use ImageCourse.camera for Camera capture
-      if (pickedfiles != null) {
-        setState(() {
-          imagefilesx = pickedfiles;
-        });
+      PermissionStatus permission = await Permission.photos.request();
+      if (permission.isDenied) {
+      } else {
+        var pickedfiles = await picker.pickImage(source: ImageSource.gallery);
+        //you can use ImageCourse.camera for Camera capture
+        if (pickedfiles != null) {
+          setState(() {
+            imagefilesx = pickedfiles;
+          });
+        }
       }
     }
 
     openImagefromCamer() async {
-      var pickedfiles = await picker.getImage(source: ImageSource.camera);
-      //you can use ImageCourse.camera for Camera capture
-      if (pickedfiles != null) {
-        setState(() {
-          imagefilesx = pickedfiles;
-        });
+      PermissionStatus permission = await Permission.photos.request();
+      if (permission.isDenied) {
+      } else {
+        var pickedfiles = await picker.pickImage(source: ImageSource.camera);
+        //you can use ImageCourse.camera for Camera capture
+        if (pickedfiles != null) {
+          setState(() {
+            imagefilesx = pickedfiles;
+          });
+        }
       }
     }
 
